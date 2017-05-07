@@ -7,3 +7,13 @@
 span.custom-blue {
     color: rgb(55, 157, 248);
 }
+
+.profile-pic {
+  width: 200px;
+  border: 5px solid rgb(223, 111, 12) !important;
+  border-radius: 500px;
+}
+
+.stroked-text {
+  -webkit-text-stroke:1px white;
+}
