@@ -104,7 +104,23 @@
               </section>
 
               <section>
-                TODO
+                <h2>Network types</h2>
+                <p>LoRA/SigFox/...</p>
+              </section>
+
+              <section>
+                <h2>LoRa</h2>
+                <p>TODO...</p>
+              </section>
+
+              <section>
+                <h2>SigFox</h2>
+                <p>TODO...</p>
+              </section>
+
+              <section>
+                <h2>Proximus</h2>
+                <p>TODO...</p>
               </section>
             </section>
 
@@ -124,7 +140,23 @@
               </section>
 
               <section>
-                TODO
+                <h2>Sensor types</h2>
+                <p>TODO...</p>
+              </section>
+
+              <section>
+                <h2>MyThings platform</h2>
+                <p>TODO...</p>
+              </section>
+
+              <section>
+                <h2>Integration</h2>
+                <p>Sensor integration with MyThings... TODO...</p>
+              </section>
+
+              <section>
+                <h2>Use cases</h2>
+                <p>TODO...</p>
               </section>
             </section>
 
@@ -148,7 +180,7 @@
                     <li>Fast iterative development</li>
                   </ul>
                   <br /><br />
-                  So What technology did we pick...
+                  So what technology did we pick...
                 </p>
               </section>
 
@@ -209,7 +241,14 @@
               <section>
                 <h2>TypeScript</h2>
                 <p>
-                  TODO... (advantages, examples, info)
+                  An open source superset of JavaScript powered by Microsoft:<br />
+                  <ul>
+                    <li>Compiles to plain JavaScript</li>
+                    <li>Provides a more structured language</li>
+                    <li>Type safety/Interfaces/Classes/Modules/...</li>
+                  </ul>
+                  <br /><br />
+                  Gives you most ES6 features today!
                 </p>
               </section>
 
@@ -253,12 +292,78 @@ private forkWorkers(): void {
 
               <section>
                 <h2>Inter Process Messaging</h2>
-                TODO... (code examples)
+                <pre>
+                  <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+public sendMessage(payload: any, messageTarget: MessageTarget, targetFunctionName: string): void {
+    console.log('[WORKER id:' + this.workerId + '] Sending request message.');
+    let message: IPCMessage = new IPCRequest(this.workerId, null, payload, messageTarget, targetFunctionName);
+    process.send(message);
+}
+                  </code>
+                </pre>
+
+                <pre>
+                  <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+public sendMessageWithCallback(payload: any, callback: Function, messageTarget: MessageTarget, targetFunctionName: string): void {
+    let callbackId: string = process.hrtime()  + "--" + (Math.random() * 6);
+    this.callbacks.push([callbackId, callback]);
+
+    console.log('[WORKER id:' + this.workerId + '] Sending request message with callback (' + callbackId + ')');
+    let message: IPCMessage = new IPCRequest(this.workerId, callbackId, payload, messageTarget, targetFunctionName);
+    process.send(message);
+}
+                  </code>
+                </pre>
+
+                <pre>
+                  <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+public sendReply(payload: any, originalMessage: IPCRequest): void {
+    console.log('[WORKER id:' + this.workerId + '] Sending reply message (callback: ' + originalMessage.callbackId + ')');
+    let reply: IPCMessage = new IPCReply(this.workerId, payload, originalMessage);
+    process.send(reply);
+}
+                  </code>
+                </pre>
+              </section>
+
+              <section>
+                <h2>IPC Continued</h2>
+                <pre>
+                  <code>
+                  </code>
+                </pre>
               </section>
 
               <section>
                 <h2>Defining endpoints</h2>
-                TODO... (code examples)
+                <pre>
+                  <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+public mapEntryPoints = (): void => {
+    let endpointManager: EndpointManager = EndpointManager.getInstance();
+        endpointManager.registerEndpoint(
+            new EndpointDefinition('/',  this.index.bind(this))
+        );
+        endpointManager.registerEndpoint(
+            new EndpointDefinition('/helloworld', this.helloworld.bind(this),
+                [new Parameter&lt;string&gt;(
+                  'name',
+                  'string field containing the name',
+                  new StringNotEmptyValidatorImpl()
+                )]
+            )
+        );
+        endpointManager.registerEndpoint(
+            new EndpointDefinition('/helloworld/{name}', this.helloworld.bind(this),
+                [new Parameter&lt;string&gt;(
+                  'name',
+                  'string field containing the name',
+                  new StringNotEmptyValidatorImpl()
+                )]
+            )
+        );
+};
+                  </code>
+                </pre>
               </section>
 
             </section>
@@ -272,15 +377,41 @@ private forkWorkers(): void {
               </section>
 
               <section>
-                <h2>Q&amp;A</h2>
+                <h2>Resources</h2>
                 <p>
-                  Any questions?
-                  <br /><br />
-
-                  Github repository for the server application:
+                  Github repository for the server application:<br />
                   <a href="https://github.com/ordina-jworks/NodeSimpleServer">https://github.com/ordina-jworks/NodeSimpleServer</a>
                   <br /><br />
                   Feel free to contribute!
+                </p>
+              </section>
+
+              <section>
+                <h2>Got any burning questions?</h2>
+                <p>
+                  You can always contact us via:
+                  <br /><br /><br />
+                  <div>
+                    <div id="profile-1" class="float-left extra-margin-left">
+                      <h3 class="orange">Frederick Bousson</h3>
+                      <img src="img/avatar_frederick.jpg" class="profile-pic pic-small"/>
+                      <p>
+                          Solution Expert Smart Technologies<br />
+                          <a href="https://github.com/fbousson">https://github.com/fbousson</a><br />
+                          Twitter: @fbousson
+                      </p>
+                    </div>
+
+                    <div id="profile-2">
+                      <h3 class="orange">Kevin Van den Abeele</h3>
+                      <img src="img/avatar_kevin.jpg" class="profile-pic pic-small"/>
+                      <p>
+                          Competence Leader Internet of Things<br />
+                          <a href="https://github.com/beele">https://github.com/beele</a><br />
+                          Twitter: @nabeele_
+                      </p>
+                    </div>
+                  </div>
                 </p>
               </section>
             </section>
