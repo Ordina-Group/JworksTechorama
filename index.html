@@ -154,26 +154,158 @@
 
               <section>
                 <h2>Sensor types</h2>
-                <p>TODO...</p>
+               <p>
+<!--                   Perhaps use sensors overview from glenn-->
+                  <img src="img/sensor_overview.png"/>
+                </p>
               </section>
+                
+            <section>
+                <h2>Proximus MySense</h2>
+                <p>
+                  <img src="img/mysense_closeup.jpg"/>
+                </p>
+              </section>
+                
+                <section>
+                <h2>MySense Features</h2>
+                <p>
+                  Onboard sensors:
+                  <ul>
+                    <li>Temperature</li>
+                    <li>Accelerometer</li>
+                    <li>Push button</li>
+                    <li>Led: Green, Orange, Red</li>                    
+                  </ul>  
+                    <br />  <br />
+                Also includes a LoRa model    
+                </p>
+              </section>
+        
+                <section>
+                <h2>MySense software</h2>
+                <p>
+                    Runs simple Javascript, but very limited cpu, memory, storage...<br />
+                    Has JS objects available to interact with the sensors and the LoRa model                     
+                </p>
+              </section>
+        
+            <section>
+                <h2>MySense sample code</h2>
+                <p>
+                       <pre>
+                    <code class="js" style="font-size:14px; line-height:18px;" data-trim>               
+B.on("press", pressed);
+    
+function pressed(millis) {
+	if (millis>10000) led.blink(LED3,1); 
+	else if (millis>4000) led.blink(LED2,1);
+	else if (millis>200) led.blink(LED1,1); 
+	L.send(21, "push");
+}
+</code>
+</pre>
+
+                </p>
+              </section>
+        
+           <section>
+                <h2>MySense challenges</h2>
+                <p>
+                    <ul>
+                    <li>Need for a physical sensor</li>
+                    <li>Deployment times</li>
+                    <li>No debugger: log statements everywhere!</li>                    
+                    <li>API discovery</li>
+                    <li>Version compatibility</li>                   
+                  </ul>              
+                </p>
+              </section>
+    
+            <section>
+                <h2>Tooling</h2>
+                <p>
+                    <ul>
+                    <li>Jasmine: testframework for behaviour driven development                         
+                        <ul>
+                        <li>Use mocked sensors</li>
+                        <li>Recudes need for deployment</li> 
+                        <li>Documents the code</li>
+                        <li>Protect against regression</li>
+                        </ul>
+                    </li> 
+                    <li>Gulp: build tool                             
+                        <ul>
+                            <li>TypeScript compilation to JavaScript</li>
+                            <li>code optimisation: filtering</li> 
+                            <li>packaging: concatenation, minification</li>                            
+                            <li>JS Lint: code quality checks</li>                  
+                        </ul>
+                        </li>                                                                                                                                      
+                  </ul>              
+                </p>
+            </section>
+    
+           <section>
+                <h2>Typescript</h2>
+                <p>
+                    <ul>
+                    <li>Easier modularity with Classes / Interfaces</li>                    
+                    <li>Compiler checks:                       
+                         <ul>
+                            <li>Refactoring</li>
+                            <li>Type safety</li>
+                            <li>Code completion</li>                                 
+                        </ul>
+                    </li>                                                                                                    
+                  </ul>              
+                </p>
+            </section>
+    
+            <section>
+                <h2>Typescript code</h2>
+                    TODO button TS interface and sample code        
+                </p>
+            </section>
+
+            <section>
+                <h2>Generated JS code</h2>
+                    TODO generated JS code   
+                </p>
+            </section>
+
 
               <section>
                 <h2>MyThings platform</h2>
-                <p>TODO...</p>
+                <p>
+                  <img src="img/mythings_platform.png"/>
+                </p>
               </section>
+                
 
               <section>
                 <h2>Integration</h2>
-                <p>Sensor integration with MyThings... TODO...</p>
+                  <p>
+                  <img src="img/streaming_definitions.png"/>
+                </p>
               </section>
 
               <section>
                 <h2>Use cases</h2>
-                <p>TODO...</p>
+                <p>What does that actually mean in the real world?</p>
               </section>
+
+
+            <section>
+                <h2>Temperature alerts</h2>
+                <p>
+                  <img src="img/temperature_sensing.jpg"/>
+                </p>
+              </section>
+
                 
                 <section>
-                <h2>Container tracking with GPS and accelerometer</h2>
+                <h2>Track and trace</h2>
                 <p>
                   <img src="img/container.png"/>
                 </p>
@@ -187,7 +319,7 @@
               </section>
                 
                 
-                      <section>
+            <section>
                 <h2>Sticky sensors</h2>
                 <p>
                   <img src="img/container_sticky.jpg"/>
@@ -202,7 +334,7 @@
               </section>
                 
                 
-                  <section>
+            <section>
                 <h2>Man hole</h2>
                 <p>
                   <img src="img/manhole.jpg"/>
