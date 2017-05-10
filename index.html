@@ -75,15 +75,33 @@
 
             <section>
               <section data-background="img/slotmachine.gif">
-                <h2 class="stroked-text">Demo</h2>
+                <h2 class="stroked-text">Slotmachine</h2>
+              </section>
+
+              <section data-background="#000000">
+                <h2>Slotmachine</h2>
+                <p>
+                    <img src="img/slotmachine.png" width="750px"/>
+                </p>
               </section>
 
               <section>
-                <h2>Demo</h2>
+                <h2>Setup</h2>
+                <img src="img/slotmachine-high-level.png"/>
+              </section>
+
+              <section>
+                <h2>Setup</h2>
                 <p>
-                    Slotmachine application:
-                    <br />
-                    LoRa button
+                  How is the demo set up:
+                  <ul>
+                    <li>Runs on custom NodeJS server application</li>
+                    <li>Sensors registered via the Proximus MyThings Application</li>
+                    <li>MyThings sends sensor data to our backend</li>
+                    <li>Websocket for application event exchange</li>
+                  </ul>
+                  <br /><br />
+                  More about sensors (MyThings) and the backend in the their respective sections...
                 </p>
               </section>
             </section>
@@ -186,10 +204,15 @@
 
               <section>
                 <p>
-                  DENIED TECHS...
-                  <br />
-                  TODO... (images/animation)
+                  <h2 class="fragment">Not these...</h2>
+                  <div class="content-centered" style="height: 420px;">
+                      <div style="width: 700px; height: 404px;" class="float-left">
+                        <img class="fragment absolute" style="left: 175px; top: 120px;" src="img/java.png" width="200px"/>
+                        <img class="fragment absolute" style="right: 50px; top: 200px;" src="img/net.png" width="450px"/>
+                      </div>
+                  </div>
                 </p>
+                <h2 class="fragment stroked-text">But this!</h2>
               </section>
 
               <section data-background="img/node-logo.png">
@@ -229,7 +252,7 @@
                   While this is nice it is limiting in a number of ways: <br />
                   <ul>
                     <li>JavaScript coding quirks</li>
-                    <li>No classes and modules (es5)</li>
+                    <li>No classes and modules (ES5)</li>
                     <li>No type safety</li>
                   </ul>
                 </p>
@@ -248,7 +271,7 @@
                     <li>Type safety/Interfaces/Classes/Modules/...</li>
                   </ul>
                   <br /><br />
-                  Gives you most ES6 features today!
+                  Gives you most ES6 features today! The only 'downside' is that it requires compilation!
                 </p>
               </section>
 
@@ -329,7 +352,30 @@ public sendReply(payload: any, originalMessage: IPCRequest): void {
               <section>
                 <h2>IPC Continued</h2>
                 <pre>
-                  <code>
+                  <code class="java" style="font-size:14px; line-height:18px;" data-trim>
+private targetHandler(msg: IPCMessage): void {
+    if(msg.type == IPCMessage.TYPE_REQUEST) {
+        let m: IPCRequest = &lt;IPCReply&gt; msg;
+        switch (m.target){
+            case MessageTarget.DATA_BROKER:
+                this.dataBroker.send(msg);
+                break;
+            case MessageTarget.INTERVAL_WORKER:
+                this.intervalWorker.send(msg);
+                break;
+            case MessageTarget.HTTP_WORKER:
+                let index: number = Math.round(Math.random() * this.httpWorkers.length) - 1;
+                index = index === -1 ? 0 : index;
+                this.httpWorkers[index].send(msg);
+                break;
+            default:
+                console.error('[MASTER] Cannot find message target: ' + m.target);
+        }
+    } else if(msg.type == IPCMessage.TYPE_REPLY) {
+        let m: IPCReply = &lt;IPCReply&gt;msg;
+        cluster.workers[m.originalMessage.workerId].send(msg);
+    }
+};
                   </code>
                 </pre>
               </section>
@@ -338,32 +384,69 @@ public sendReply(payload: any, originalMessage: IPCRequest): void {
                 <h2>Defining endpoints</h2>
                 <pre>
                   <code class="js" style="font-size:14px; line-height:18px;" data-trim>
-public mapEntryPoints = (): void => {
-    let endpointManager: EndpointManager = EndpointManager.getInstance();
-        endpointManager.registerEndpoint(
-            new EndpointDefinition('/',  this.index.bind(this))
-        );
-        endpointManager.registerEndpoint(
-            new EndpointDefinition('/helloworld', this.helloworld.bind(this),
-                [new Parameter&lt;string&gt;(
-                  'name',
-                  'string field containing the name',
-                  new StringNotEmptyValidatorImpl()
-                )]
-            )
-        );
-        endpointManager.registerEndpoint(
-            new EndpointDefinition('/helloworld/{name}', this.helloworld.bind(this),
-                [new Parameter&lt;string&gt;(
-                  'name',
-                  'string field containing the name',
-                  new StringNotEmptyValidatorImpl()
-                )]
-            )
-        );
-};
+let endpointManager: EndpointManager = EndpointManager.getInstance();
+    endpointManager.registerEndpoint(
+        new EndpointDefinition('/',  this.index.bind(this))
+    );
+    endpointManager.registerEndpoint(
+        new EndpointDefinition('/helloworld', this.helloworld.bind(this),
+            [new Parameter&lt;string&gt;(
+              'name',
+              'string field containing the name',
+              new StringNotEmptyValidatorImpl()
+            )]
+        )
+    );
+    endpointManager.registerEndpoint(
+        new EndpointDefinition('/helloworld/{name}', this.helloworld.bind(this),
+            [new Parameter&lt;string&gt;(
+              'name',
+              'string field containing the name',
+              new StringNotEmptyValidatorImpl()
+            )]
+        )
+    );
                   </code>
                 </pre>
+              </section>
+
+              <section>
+                <h2>Websockets</h2>
+                <pre>
+                  <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+this.socket = new WebSocket.Server({ port: this.config.settings.socketPort, clientTracking: true });
+this.socket.on('connection', (ws) => {
+   ws.on('message', (message) => {
+       console.log('received: %s', message);
+       //Handle message from client!
+   });
+
+   ws.send('Welcome!');
+});
+                  </code>
+                </pre>
+
+                <pre>
+                  <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+private broadcastMessage(message: any): void {
+    this.socket.clients.forEach((client: WebSocket) => {
+       client.send(JSON.stringify(message));
+    });
+}
+                  </code>
+                </pre>
+              </section>
+
+              <section>
+                <h2>Conclusion</h2>
+                <p>
+                  Complete rewrite in TypeScript:
+                  <ul>
+                    <li>Much less error prone programming</li>
+                    <li>Code looks and feels better with types</li>
+                    <li>Much better readability</li>
+                  </ul>
+                </p>
               </section>
 
             </section>

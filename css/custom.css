@@ -4,8 +4,9 @@
  * Copyright (C) 2016 JWorks - http://www.ordina.be
  */
 
-span.custom-blue {
-    color: rgb(55, 157, 248);
+.content-centered {
+  width: 100%
+  margin: 0 auto;
 }
 
 .profile-pic {
@@ -32,6 +33,10 @@ span.custom-blue {
 
 .float-left {
   float: left;
+}
+
+.absolute {
+  position: absolute;
 }
 
 .extra-margin-left {
