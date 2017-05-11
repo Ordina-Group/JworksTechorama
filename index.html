@@ -134,7 +134,7 @@
                   <img src="img/multitech.jpg"/>
                 </p>
               </section>
-           
+
             </section>
 
             <!-- ====================================
@@ -159,14 +159,14 @@
                   <img src="img/sensor_overview.png"/>
                 </p>
               </section>
-                
+
             <section>
                 <h2>Proximus MySense</h2>
                 <p>
-                  <img src="img/mysense_closeup.jpg"/>
+                  <img src="img/mysense_closeup.jpg" width="650px"/>
                 </p>
               </section>
-                
+
                 <section>
                 <h2>MySense Features</h2>
                 <p>
@@ -175,32 +175,32 @@
                     <li>Temperature</li>
                     <li>Accelerometer</li>
                     <li>Push button</li>
-                    <li>Led: Green, Orange, Red</li>                    
-                  </ul>  
+                    <li>Led: Green, Orange, Red</li>
+                  </ul>
                     <br />  <br />
-                Also includes a LoRa model    
+                Also includes a LoRa model
                 </p>
               </section>
-        
+
                 <section>
                 <h2>MySense software</h2>
                 <p>
                     Runs simple Javascript, but very limited cpu, memory, storage...<br />
-                    Has JS objects available to interact with the sensors and the LoRa model                     
+                    Has JS objects available to interact with the sensors and the LoRa model
                 </p>
               </section>
-        
+
             <section>
                 <h2>MySense sample code</h2>
                 <p>
                        <pre>
-                    <code class="js" style="font-size:14px; line-height:18px;" data-trim>               
+                    <code class="js" style="font-size:14px; line-height:18px;" data-trim>
 B.on("press", pressed);
-    
+
 function pressed(millis) {
-	if (millis>10000) led.blink(LED3,1); 
+	if (millis>10000) led.blink(LED3,1);
 	else if (millis>4000) led.blink(LED2,1);
-	else if (millis>200) led.blink(LED1,1); 
+	else if (millis>200) led.blink(LED1,1);
 	L.send(21, "push");
 }
 </code>
@@ -208,69 +208,69 @@ function pressed(millis) {
 
                 </p>
               </section>
-        
+
            <section>
                 <h2>MySense challenges</h2>
                 <p>
                     <ul>
                     <li>Need for a physical sensor</li>
                     <li>Deployment times</li>
-                    <li>No debugger: log statements everywhere!</li>                    
+                    <li>No debugger: log statements everywhere!</li>
                     <li>API discovery</li>
-                    <li>Version compatibility</li>                   
-                  </ul>              
+                    <li>Version compatibility</li>
+                  </ul>
                 </p>
               </section>
-    
+
             <section>
                 <h2>Tooling</h2>
                 <p>
                     <ul>
-                    <li>Jasmine: testframework for behaviour driven development                         
+                    <li>Jasmine: testframework for behaviour driven development
                         <ul>
                         <li>Use mocked sensors</li>
-                        <li>Recudes need for deployment</li> 
+                        <li>Recudes need for deployment</li>
                         <li>Documents the code</li>
                         <li>Protect against regression</li>
                         </ul>
-                    </li> 
-                    <li>Gulp: build tool                             
+                    </li>
+                    <li>Gulp: build tool
                         <ul>
                             <li>TypeScript compilation to JavaScript</li>
-                            <li>code optimisation: filtering</li> 
-                            <li>packaging: concatenation, minification</li>                            
-                            <li>JS Lint: code quality checks</li>                  
+                            <li>code optimisation: filtering</li>
+                            <li>packaging: concatenation, minification</li>
+                            <li>JS Lint: code quality checks</li>
                         </ul>
-                        </li>                                                                                                                                      
-                  </ul>              
+                        </li>
+                  </ul>
                 </p>
             </section>
-    
+
            <section>
                 <h2>Typescript</h2>
                 <p>
                     <ul>
-                    <li>Easier modularity with Classes / Interfaces</li>                    
-                    <li>Compiler checks:                       
+                    <li>Easier modularity with Classes / Interfaces</li>
+                    <li>Compiler checks:
                          <ul>
                             <li>Refactoring</li>
                             <li>Type safety</li>
-                            <li>Code completion</li>                                 
+                            <li>Code completion</li>
                         </ul>
-                    </li>                                                                                                    
-                  </ul>              
+                    </li>
+                  </ul>
                 </p>
             </section>
-    
+
             <section>
                 <h2>Typescript code</h2>
-                    TODO button TS interface and sample code        
+                    TODO button TS interface and sample code
                 </p>
             </section>
 
             <section>
                 <h2>Generated JS code</h2>
-                    TODO generated JS code   
+                    TODO generated JS code
                 </p>
             </section>
 
@@ -278,15 +278,15 @@ function pressed(millis) {
               <section>
                 <h2>MyThings platform</h2>
                 <p>
-                  <img src="img/mythings_platform.png"/>
+                  <img src="img/mythings_platform.png" width="800px"/>
                 </p>
               </section>
-                
+
 
               <section>
                 <h2>Integration</h2>
                   <p>
-                  <img src="img/streaming_definitions.png"/>
+                  <img src="img/streaming_definitions.png" width="550px"/>
                 </p>
               </section>
 
@@ -299,49 +299,49 @@ function pressed(millis) {
             <section>
                 <h2>Temperature alerts</h2>
                 <p>
-                  <img src="img/temperature_sensing.jpg"/>
+                  <img src="img/temperature_sensing.jpg" width="420px"/>
                 </p>
               </section>
 
-                
+
                 <section>
                 <h2>Track and trace</h2>
                 <p>
-                  <img src="img/container.png"/>
+                  <img src="img/container.png" width="600px"/>
                 </p>
               </section>
-                                
+
                 <section>
                 <h2>Some assembly required</h2>
                 <p>
-                  <img src="img/container_assembly.jpg"/>
+                  <img src="img/container_assembly.jpg" width="700px"/>
                 </p>
               </section>
-                
-                
+
+
             <section>
                 <h2>Sticky sensors</h2>
                 <p>
-                  <img src="img/container_sticky.jpg"/>
+                  <img src="img/container_sticky.jpg" width="700px"/>
                 </p>
               </section>
-                
+
                 <section>
                 <h2>Experimenting with placement</h2>
                 <p>
-                  <img src="img/container_topview.jpg"/>
+                  <img src="img/container_topview.jpg" width="700px"/>
                 </p>
               </section>
-                
-                
+
+
             <section>
                 <h2>Man hole</h2>
                 <p>
-                  <img src="img/manhole.jpg"/>
+                  <img src="img/manhole.jpg" width="700px"/>
                 </p>
               </section>
-                
-                
+
+
             </section>
 
             <!-- ====================================
