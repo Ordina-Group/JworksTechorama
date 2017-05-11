@@ -264,13 +264,93 @@ function pressed(millis) {
 
             <section>
                 <h2>Typescript code</h2>
-                    TODO button TS interface and sample code
+                    <pre>
+                    <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+                    
+import { IT } from "../interfaces/IT";
+import { IL } from "../interfaces/IL";
+import { IB } from "../interfaces/IB";
+import { IP } from "../interfaces/IP";
+import { IScenario } from "../interfaces/IScenario";
+import { ILed } from "../interfaces/ILed";
+
+declare let wait:any;
+declare let print:any;
+
+declare let LED1: any;
+declare let LED2: any;
+declare let LED3: any;
+
+
+</code>
+</pre>
+
+                </p>
+            </section>
+
+
+
+ <section>
+                <h2>Typescript code</h2>
+                    <pre>
+                    <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+                
+
+export class SPushButtonSimple implements IScenario{
+
+ constructor(private _p: IP, private _l: IL, private _b:IB, private _led:ILed) {
+}
+
+public start() {
+
+	this._b.on('short', this.short);
+	this._b.on('long', this.long);
+}
+
+
+private short(){
+	  this._l.send(1,"short")
+}
+
+private long(){      
+	  this._l.send(1,"long")
+}
+
+
+}
+
+
+
+</code>
+</pre>
+
                 </p>
             </section>
 
             <section>
                 <h2>Generated JS code</h2>
-                    TODO generated JS code
+                 <pre>
+                    <code class="js" style="font-size:14px; line-height:18px;" data-trim>
+var SPushButtonSimple = function() {
+  function t(t, o, s, n) {
+    this._p = t, this._l = o, this._b = s, this._led = n
+  }
+  return t.prototype.start = function() {
+    print("START push button"), this._b.on("short", this.short), this._b.on("long", this.long)
+  }, t.prototype.stop = function() {
+    this._l.send(1, "short")
+  }, t.prototype.short = function() {
+    this._l.send(1, "short")
+  }, t.prototype.long = function() {
+    this._l.send(1, "long")
+  }, t
+}();
+exports.SPushButtonSimple = SPushButtonSimple;
+
+var buttonScenarion = new exports.SPushButtonSimple(P, L, B, led);
+                </code>
+                </pre>
+
                 </p>
             </section>
 
