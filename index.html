@@ -580,14 +580,21 @@ let endpointManager: EndpointManager = EndpointManager.getInstance();
                 <h2>Websockets</h2>
                 <pre>
                   <code class="js" style="font-size:14px; line-height:18px;" data-trim>
-this.socket = new WebSocket.Server({ port: this.config.settings.socketPort, clientTracking: true });
-this.socket.on('connection', (ws) => {
-   ws.on('message', (message) => {
-       console.log('received: %s', message);
-       //Handle message from client!
-   });
+this.sio = socketIO(
+    http.createServer()
+        .listen(process.env.SOCKETPORT || this.config.settings.socketPort, '0.0.0.0')
+);
+this.sio.serveClient(true);
 
-   ws.send('Welcome!');
+this.sio
+    .of('/socket')
+    .on('connection', (socket: SocketIO.Socket) => {
+    console.log(socket.id + ' connected');
+    socket.emit('welcome', 'You have successfully connected to the web socket!');
+
+    socket.on('app-event', (data: any) => {
+       console.log('Message received from client:' + data);
+    });
 });
                   </code>
                 </pre>
@@ -595,9 +602,8 @@ this.socket.on('connection', (ws) => {
                 <pre>
                   <code class="js" style="font-size:14px; line-height:18px;" data-trim>
 private broadcastMessage(message: any): void {
-    this.socket.clients.forEach((client: WebSocket) => {
-       client.send(JSON.stringify(message));
-    });
+    console.log('Broadcasting web socket message');
+    this.sio.of('/socket').emit('app-event', JSON.stringify(message));
 }
                   </code>
                 </pre>
@@ -611,6 +617,7 @@ private broadcastMessage(message: any): void {
                     <li>Much less error prone programming</li>
                     <li>Code looks and feels better with types</li>
                     <li>Much better readability</li>
+                    <li>Easier to refactor code without breaking things</li>
                   </ul>
                 </p>
               </section>
