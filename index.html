@@ -155,7 +155,7 @@
               <section>
                 <h2>Sensor types</h2>
                <p>
-<!--                   Perhaps use sensors overview from glenn-->
+                  <!-- Perhaps use sensors overview from glenn -->
                   <img src="img/sensor_overview.png"/>
                 </p>
               </section>
@@ -193,19 +193,22 @@
             <section>
                 <h2>MySense sample code</h2>
                 <p>
-                       <pre>
+                  <pre>
                     <code class="js" style="font-size:14px; line-height:18px;" data-trim>
 B.on("press", pressed);
 
 function pressed(millis) {
-	if (millis>10000) led.blink(LED3,1);
-	else if (millis>4000) led.blink(LED2,1);
-	else if (millis>200) led.blink(LED1,1);
-	L.send(21, "push");
+    if (millis > 10000) {
+      led.blink(LED3,1);
+    } else if {
+      led.blink(LED3,1);
+    } else if {
+      (millis > 200) led.blink(LED1,1);
+    }
+    L.send(21, "push");
 }
-</code>
-</pre>
-
+                    </code>
+                  </pre>
                 </p>
               </section>
 
@@ -266,13 +269,12 @@ function pressed(millis) {
                 <h2>Typescript code</h2>
                     <pre>
                     <code class="js" style="font-size:14px; line-height:18px;" data-trim>
-                    
 import { IT } from "../interfaces/IT";
 import { IL } from "../interfaces/IL";
 import { IB } from "../interfaces/IB";
 import { IP } from "../interfaces/IP";
-import { IScenario } from "../interfaces/IScenario";
 import { ILed } from "../interfaces/ILed";
+import { IScenario } from "../interfaces/IScenario";
 
 declare let wait:any;
 declare let print:any;
@@ -280,50 +282,34 @@ declare let print:any;
 declare let LED1: any;
 declare let LED2: any;
 declare let LED3: any;
-
-
-</code>
-</pre>
-
+                    </code>
+                  </pre>
                 </p>
-            </section>
+              </section>
 
-
-
- <section>
+              <section>
                 <h2>Typescript code</h2>
                     <pre>
                     <code class="js" style="font-size:14px; line-height:18px;" data-trim>
-                
+export class SPushButtonSimple implements IScenario {
+    constructor(private persistence: IP, private modem: IL, private button:IB, private led:ILed) {
+    }
 
-export class SPushButtonSimple implements IScenario{
+    public start() {
+    	this.button.on('short', this.short);
+    	this.button.on('long', this.long);
+    }
 
- constructor(private _p: IP, private _l: IL, private _b:IB, private _led:ILed) {
+    private short(){
+    	  this.modem.send(1,"short")
+    }
+
+    private long(){
+    	  this.modem.send(1,"long")
+    }
 }
-
-public start() {
-
-	this._b.on('short', this.short);
-	this._b.on('long', this.long);
-}
-
-
-private short(){
-	  this._l.send(1,"short")
-}
-
-private long(){      
-	  this._l.send(1,"long")
-}
-
-
-}
-
-
-
-</code>
-</pre>
-
+                    </code>
+                  </pre>
                 </p>
             </section>
 
@@ -332,18 +318,18 @@ private long(){
                  <pre>
                     <code class="js" style="font-size:14px; line-height:18px;" data-trim>
 var SPushButtonSimple = function() {
-  function t(t, o, s, n) {
-    this._p = t, this._l = o, this._b = s, this._led = n
-  }
-  return t.prototype.start = function() {
-    print("START push button"), this._b.on("short", this.short), this._b.on("long", this.long)
-  }, t.prototype.stop = function() {
-    this._l.send(1, "short")
-  }, t.prototype.short = function() {
-    this._l.send(1, "short")
-  }, t.prototype.long = function() {
-    this._l.send(1, "long")
-  }, t
+    function t(t, o, s, n) {
+      this.persistence = t, this.modem = o, this.button = s, this.led = n
+    }
+    return t.prototype.start = function() {
+      print("START push button"), this.button.on("short", this.short), this.button.on("long", this.long)
+    }, t.prototype.stop = function() {
+      this.modem.send(1, "short")
+    }, t.prototype.short = function() {
+      this.modem.send(1, "short")
+    }, t.prototype.long = function() {
+      this.modem.send(1, "long")
+    }, t
 }();
 exports.SPushButtonSimple = SPushButtonSimple;
 
@@ -517,7 +503,7 @@ var buttonScenarion = new exports.SPushButtonSimple(P, L, B, led);
                     <li>Type safety/Interfaces/Classes/Modules/...</li>
                   </ul>
                   <br /><br />
-                  Gives you most ES6 features today! The only 'downside' is that it requires compilation!
+                  Gives you most ES6 features today! The only 'tradeoff' is that it needs to be transpiled!
                 </p>
               </section>
 
