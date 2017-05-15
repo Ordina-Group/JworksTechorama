@@ -190,7 +190,7 @@
                 </p>
               </section>
 
-            <section>
+              <section>
                 <h2>MySense sample code</h2>
                 <p>
                   <pre>
@@ -212,7 +212,7 @@ function pressed(millis) {
                 </p>
               </section>
 
-           <section>
+              <section>
                 <h2>MySense challenges</h2>
                 <p>
                     <ul>
@@ -225,7 +225,7 @@ function pressed(millis) {
                 </p>
               </section>
 
-            <section>
+              <section>
                 <h2>Tooling</h2>
                 <p>
                     <ul>
@@ -249,7 +249,7 @@ function pressed(millis) {
                 </p>
             </section>
 
-           <section>
+            <section>
                 <h2>Typescript</h2>
                 <p>
                     <ul>
@@ -266,8 +266,8 @@ function pressed(millis) {
             </section>
 
             <section>
-                <h2>Typescript code</h2>
-                    <pre>
+              <h2>Typescript code</h2>
+                  <pre>
                     <code class="js" style="font-size:14px; line-height:18px;" data-trim>
 import { IT } from "../interfaces/IT";
 import { IL } from "../interfaces/IL";
@@ -283,13 +283,13 @@ declare let LED1: any;
 declare let LED2: any;
 declare let LED3: any;
                     </code>
-                  </pre>
-                </p>
-              </section>
+                </pre>
+              </p>
+            </section>
 
               <section>
                 <h2>Typescript code</h2>
-                    <pre>
+                  <pre>
                     <code class="js" style="font-size:14px; line-height:18px;" data-trim>
 export class SPushButtonSimple implements IScenario {
     constructor(private persistence: IP, private modem: IL, private button:IB, private led:ILed) {
@@ -334,81 +334,77 @@ var SPushButtonSimple = function() {
 exports.SPushButtonSimple = SPushButtonSimple;
 
 var buttonScenarion = new exports.SPushButtonSimple(P, L, B, led);
-                </code>
+                  </code>
                 </pre>
-
-                </p>
+              </p>
             </section>
 
+            <section>
+              <h2>MyThings platform</h2>
+              <p>
+                <img src="img/mythings_platform.png" width="800px"/>
+              </p>
+            </section>
 
-              <section>
-                <h2>MyThings platform</h2>
-                <p>
-                  <img src="img/mythings_platform.png" width="800px"/>
-                </p>
-              </section>
+            <section>
+              <h2>Integration</h2>
+              <p>
+                <img src="img/streaming_definitions.png" width="550px"/>
+              </p>
+            </section>
 
-
-              <section>
-                <h2>Integration</h2>
-                  <p>
-                  <img src="img/streaming_definitions.png" width="550px"/>
-                </p>
-              </section>
-
-              <section>
-                <h2>Use cases</h2>
-                <p>What does that actually mean in the real world?</p>
-              </section>
-
+            <section>
+              <h2>Use cases</h2>
+              <p>What does that actually mean in the real world?</p>
+            </section>
 
             <section>
                 <h2>Temperature alerts</h2>
                 <p>
                   <img src="img/temperature_sensing.jpg" width="420px"/>
                 </p>
-              </section>
-
-
-                <section>
-                <h2>Track and trace</h2>
-                <p>
-                  <img src="img/container.png" width="600px"/>
-                </p>
-              </section>
-
-                <section>
-                <h2>Some assembly required</h2>
-                <p>
-                  <img src="img/container_assembly.jpg" width="700px"/>
-                </p>
-              </section>
-
-
-            <section>
-                <h2>Sticky sensors</h2>
-                <p>
-                  <img src="img/container_sticky.jpg" width="700px"/>
-                </p>
-              </section>
-
-                <section>
-                <h2>Experimenting with placement</h2>
-                <p>
-                  <img src="img/container_topview.jpg" width="700px"/>
-                </p>
-              </section>
-
-
-            <section>
-                <h2>Man hole</h2>
-                <p>
-                  <img src="img/manhole.jpg" width="700px"/>
-                </p>
-              </section>
-
-
             </section>
+
+            <section>
+              <h2>Track and trace</h2>
+              <p>
+                <img src="img/container.png" width="600px"/>
+              </p>
+            </section>
+
+            <section>
+              <h2>Some assembly required</h2>
+              <p>
+                <img src="img/container_assembly.jpg" width="700px"/>
+              </p>
+            </section>
+            <section>
+              <h2>Sticky sensors</h2>
+              <p>
+                <img src="img/container_sticky.jpg" width="700px"/>
+              </p>
+            </section>
+
+            <section>
+              <h2>Experimenting with placement</h2>
+              <p>
+                <img src="img/container_topview.jpg" width="700px"/>
+              </p>
+            </section>
+
+            <section>
+              <h2>Man hole</h2>
+              <p>
+                <img src="img/manhole.jpg" width="700px"/>
+              </p>
+            </section>
+
+            <section>
+              <h2>Conclusion</h2>
+              <p>TODO...</p>
+            </section>
+
+          </section>
 
             <!-- ====================================
             =========== Application slides ==========
@@ -546,6 +542,10 @@ private forkWorkers(): void {
               </section>
 
               <section>
+                <img src="img/ipc-architecture.png" width="600px"/>
+              </section>
+
+              <section>
                 <h2>Inter Process Messaging</h2>
                 <pre>
                   <code class="js" style="font-size:14px; line-height:18px;" data-trim>
@@ -613,6 +613,10 @@ private targetHandler(msg: IPCMessage): void {
               </section>
 
               <section>
+                <img src="img/http-architecture.png" width="600px"/>
+              </section>
+
+              <section>
                 <h2>Defining endpoints</h2>
                 <pre>
                   <code class="js" style="font-size:14px; line-height:18px;" data-trim>
@@ -640,6 +644,10 @@ let endpointManager: EndpointManager = EndpointManager.getInstance();
     );
                   </code>
                 </pre>
+              </section>
+
+              <section>
+                <img src="img/websocket-architecture.png" width="600px"/>
               </section>
 
               <section>
@@ -703,8 +711,11 @@ private broadcastMessage(message: any): void {
                 <p>
                   Github repository for the server application:<br />
                   <a href="https://github.com/ordina-jworks/NodeSimpleServer">https://github.com/ordina-jworks/NodeSimpleServer</a>
-                  <br /><br />
+                  <br />
                   Feel free to contribute!
+                  <br /><br />
+                  Slides available from:<br />
+                  <a href="">TODO</a>
                 </p>
               </section>
 
