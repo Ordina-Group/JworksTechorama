@@ -200,10 +200,10 @@ B.on("press", pressed);
 function pressed(millis) {
     if (millis > 10000) {
       led.blink(LED3,1);
-    } else if {
-      led.blink(LED3,1);
-    } else if {
-      (millis > 200) led.blink(LED1,1);
+    } else if (millis > 400) {
+      led.blink(LED2,1);
+    } else {
+      led.blink(LED1,1);
     }
     L.send(21, "push");
 }
